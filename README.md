@@ -12,12 +12,10 @@ Needs `python3` with PyGObject (`python-gobject` on Arch, `python3-gi` on
 Debian/Ubuntu) and a StatusNotifierItem tray: waybar, KDE, or GNOME with the
 AppIndicator extension.
 
-```sh
-make xpi
-```
-
-In Zotero: Tools → Plugins → gear menu → Install Plugin From File, and pick
-`build/zotero-tray-<version>.xpi`.
+Download the `.xpi` from the
+[latest release](https://github.com/jaehho/zotero-tray/releases/latest) (or
+`make xpi` for `build/`), then in Zotero: Tools → Plugins → gear menu →
+Install Plugin From File. Zotero updates it from the release after that.
 
 ## Behavior
 
