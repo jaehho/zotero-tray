@@ -2,10 +2,9 @@
 
 ## Now
 
-- [ ] Publish: GitHub repo `jaehho/zotero-tray`, then a release carrying the
-      .xpi and `updates.json`. `manifest.json`'s `update_url` already points at
-      `releases/latest/download/updates.json`; until it exists, Zotero's update
-      check just fails quietly.
+- [x] Published 2026-09-10: `github.com/jaehho/zotero-tray`, release v0.1.0.
+      The next one is: bump `version` in `manifest.json`, commit,
+      `make release`.
 
 ## Notes
 
