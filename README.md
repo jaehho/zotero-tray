@@ -53,3 +53,12 @@ bus. Tested with Zotero 10.0.1 on Hyprland 0.56.
 For Windows, see
 [minimize-zotero-to-tray](https://github.com/B3000Kcn/minimize-zotero-to-tray),
 whose close interception this follows.
+
+## Releasing and packaging
+
+A release is: bump `version` in `manifest.json`, commit, `make release`.
+
+Not an AUR package on purpose. Zotero never scans `/usr/lib/zotero/extensions`
+(`extensions.startupScanScopes` is 0), which is why `zotero-extension-scihub`
+installs there and never loads. A plugin reaches Zotero through Install Plugin
+From File, and updates through `update_url`.
