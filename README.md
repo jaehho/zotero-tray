@@ -25,6 +25,8 @@ Install Plugin From File. Zotero updates it from the release after that.
 - **Tray menu**: Show/Hide Zotero, Quit Zotero.
 - **Running `zotero` again**, or opening a `zotero://` link, shows the window.
 - If the tray goes away while Zotero is hidden, the window comes back.
+- **Start hidden** only when the launcher sets `ZOTERO_TRAY_START_HIDDEN=1`
+  (the Hyprland tray block does). A normal launch always shows the window.
 
 ## Preferences
 
@@ -32,7 +34,6 @@ Settings → Advanced → Config Editor:
 
 | Pref | Default | |
 |---|---|---|
-| `extensions.zotero-tray.startHidden` | `false` | Hide as soon as the tray is up, for launching at login |
 | `extensions.zotero-tray.icon` | `zotero` | Icon theme name; `zotero-symbolic` suits a monochrome bar |
 
 ## How it works

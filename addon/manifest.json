@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Zotero Tray",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Close Zotero to a tray icon instead of quitting (Linux)",
   "author": "Jaeho Cho",
   "homepage_url": "https://github.com/jaehho/zotero-tray",

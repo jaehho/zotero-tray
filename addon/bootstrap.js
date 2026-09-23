@@ -46,7 +46,7 @@ async function run(command, args) {
 class Tray {
   constructor(rootURI, appStartup) {
     this.rootURI = rootURI;
-    // startHidden is for launching Zotero, not for enabling the plugin.
+    // Auto-hide is for a launcher-started app, not for enabling the plugin.
     this.startedHidden = !appStartup;
     this.listeners = new Map();
     this.proc = null;
@@ -148,9 +148,11 @@ class Tray {
   }
 
   // At app startup the tray and the main window come up in either order;
-  // hide once both exist.
+  // hide once both exist. Only when the launcher asked for it — a sticky
+  // pref also hid a later manual `zotero` launch (window opens, then gone).
   maybeStartHidden() {
-    if (this.startedHidden || !this.ready || !pref("startHidden")) return;
+    if (this.startedHidden || !this.ready) return;
+    if (!Services.env.get("ZOTERO_TRAY_START_HIDDEN")) return;
     if (!Zotero.getMainWindow()) return;
     this.startedHidden = true;
     this.hide();
