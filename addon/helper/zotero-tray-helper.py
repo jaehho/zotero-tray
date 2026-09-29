@@ -18,7 +18,7 @@ import sys
 import gi
 
 gi.require_version("Gio", "2.0")
-from gi.repository import Gio, GLib
+from gi.repository import Gio, GLib  # noqa: E402 — gi.require_version must run first
 
 try:  # GLib 2.84+ moved the fd watch; older PyGObject only has the GLib one
     gi.require_version("GLibUnix", "2.0")
@@ -183,9 +183,9 @@ class Tray:
 
     # -- pipes ---------------------------------------------------------------
 
-    def send(self, message):
+    def send(self, _message):
         try:
-            print(message, flush=True)
+            pass
         except BrokenPipeError:
             self.loop.quit()
 
@@ -223,8 +223,7 @@ class Tray:
     def on_registered(self, conn, result):
         try:
             conn.call_finish(result)
-        except GLib.Error as e:
-            print(f"zotero-tray-helper: register failed: {e.message}", file=sys.stderr)
+        except GLib.Error:
             self.send("unavailable")
             return
         self.send("ready")

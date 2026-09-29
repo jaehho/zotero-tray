@@ -16,7 +16,7 @@ import unittest
 import gi
 
 gi.require_version("Gio", "2.0")
-from gi.repository import Gio, GLib
+from gi.repository import Gio, GLib  # noqa: E402 — gi.require_version must run first
 
 HELPER = pathlib.Path(__file__).parent.parent / "addon/helper/zotero-tray-helper.py"
 WATCHER = "org.kde.StatusNotifierWatcher"
@@ -42,9 +42,8 @@ def bus_call(bus, method, params):
 def setUpModule():
     bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
     if bus_call(bus, "NameHasOwner", GLib.Variant("(s)", (WATCHER,)))[0]:
-        raise RuntimeError(
-            f"{WATCHER} is already owned: this is a real session. Run `make test`."
-        )
+        msg = f"{WATCHER} is already owned: this is a real session. Run `make test`."
+        raise RuntimeError(msg)
 
 
 class FakeWatcher:
@@ -151,6 +150,7 @@ class HelperTest(unittest.TestCase):
             if child_id == TOGGLE:
                 return props["label"]
         self.fail("no toggle item")
+        return None
 
 
 class WithTray(HelperTest):
