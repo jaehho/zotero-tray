@@ -2,7 +2,7 @@
 
 Close Zotero to a tray icon instead of quitting. Umbrella rules: [../CLAUDE.md](../CLAUDE.md).
 
-Shared Zotero 10 install/API traps: [../ISSUES.md](../ISSUES.md).
+Shared Zotero 10 install/API traps: `gh issue list -R jaehho/zotero --label gotcha --state all --search <term>`.
 
 ## Commands
 
