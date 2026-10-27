@@ -183,9 +183,12 @@ class Tray:
 
     # -- pipes ---------------------------------------------------------------
 
-    def send(self, _message):
+    def send(self, message):
+        # stdout is the protocol with the extension, so write it, not print
+        # it (ruff T20 bans print; a lint pass once turned this into `pass`).
         try:
-            pass
+            sys.stdout.write(message + "\n")
+            sys.stdout.flush()
         except BrokenPipeError:
             self.loop.quit()
 
@@ -223,7 +226,8 @@ class Tray:
     def on_registered(self, conn, result):
         try:
             conn.call_finish(result)
-        except GLib.Error:
+        except GLib.Error as e:
+            sys.stderr.write(f"zotero-tray-helper: register failed: {e.message}\n")
             self.send("unavailable")
             return
         self.send("ready")
